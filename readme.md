@@ -13,6 +13,9 @@ Below the buttons, you can see logs and know the delta between each button press
 
 Press the center button to reset the app (counter to 0 and flush the logs)
 
+# Preview
+[Use me here !](https://discolow.github.io/reps-counter/)
+
 # Screenshot
 ![Screenshot](docs/screenshot.png)
 The buttons area take up the whole screen
