@@ -1,0 +1,69 @@
+.btn-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.btn-container .action-button {
+    width: 50%;
+    color: white;
+    font-size: 72px;
+}
+
+.btn-container button#plus {
+    background: green;
+}
+
+.btn-container button#minus {
+    background: red;
+}
+
+.btn-container .score {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: black;
+    color: yellow;
+    font-weight: bold;
+    padding: 6px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-container .score:before {
+    content: attr(score);
+    font-size: 42px;
+}
+
+.logs-container {
+    font-family: Consolas;
+}
+
+.logs-container .log-item {
+    margin-top: 5px;
+    padding: 2px;
+}
+
+.logs-container .log-item.remove {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.logs-container .log-item.add {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+.score__subtitle{
+    font-size: 12px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    background: none;
+    display: block;
+    width: auto;
+}

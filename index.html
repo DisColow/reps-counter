@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reps counter</title>
+    <link rel="stylesheet" href="vendor/normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="btn-container">
+        <div class="score" score="0" onclick="return resetScore(event);">
+            <div class="score__subtitle">Click me to reset</div>
+        </div>
+        <button class="action-button" id="minus" onclick="return handleClick(event);">
+            -
+        </button>
+        <button class="action-button" id="plus" onclick="return handleClick(event);">
+            +
+        </button>
+    </div>
+    <div class="logs-container">
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
