@@ -1,4 +1,5 @@
 # What's this?
+
 This app helps you count your reps
 
 It is as simple as possible
@@ -13,15 +14,19 @@ Below the buttons, you can see logs and know the delta between each button press
 
 Press the center button to reset the app (counter to 0 and flush the logs)
 
+Scroll down to access the settings and toggle sound effects
+
 # Preview
+
 [Use me here !](https://discolow.github.io/reps-counter/)
 
 # Screenshot
+
 ![Screenshot](docs/screenshot.png)
 The buttons area take up the whole screen
 
 If you scroll, you can see the press timestamps and delta
 
 # Possible improvements :
-* Use computer keyboard arrow keys to increase/decrease score
-* Turn off sound effects
+
+- Use computer keyboard arrow keys to increase/decrease score

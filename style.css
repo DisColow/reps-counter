@@ -67,3 +67,13 @@
     display: block;
     width: auto;
 }
+
+.controls{
+    padding: 8px;
+    background: black;
+    color: white;
+}
+
+label, input[type=checkbox]{
+    cursor: pointer;
+}
