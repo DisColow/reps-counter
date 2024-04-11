@@ -30,3 +30,5 @@ If you scroll, you can see the press timestamps and delta
 # Possible improvements :
 
 - Use computer keyboard arrow keys to increase/decrease score
+- Control to invert buttons position
+- Control to change layout (up-down instead of left-right)
