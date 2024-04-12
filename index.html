@@ -22,34 +22,64 @@
   </head>
 
   <body>
-    <div class="btn-container">
-      <div class="score" score="0" onclick="return resetScore(event);">
-        <div class="score__subtitle">Click me to reset</div>
+    <div class="app-container">
+      <div class="app-container__slider">
+        <div class="frame active">
+          <div class="btn-container">
+            <div class="score" score="0" onclick="return resetScore(event);">
+              <div class="score__subtitle">Click me to reset</div>
+            </div>
+            <button
+              class="action-button"
+              id="minus"
+              onclick="return handleClick(event);"
+            >
+              -
+            </button>
+            <button
+              class="action-button"
+              id="plus"
+              onclick="return handleClick(event);"
+            >
+              +
+            </button>
+          </div>
+          <div class="controls">
+            <div class="checkbox control__item">
+              <input type="checkbox" id="sound" checked />
+              <label title="If checked, sound is enabled" for="sound"
+                >Enable sound</label
+              >
+            </div>
+            <div class="checkbox control__item">
+              <input type="checkbox" id="invert" onclick="invertButtons(this, event)" />
+              <label title="If checked, buttons position is inverted" for="invert"
+                >Invert buttons</label
+              >
+            </div>
+            <div class="control__item">
+              <button onclick="return goToFrame(1);">Show metrics ↓</button>
+            </div>
+            <div class="control__item">
+              <button onclick="return resetScore(event);">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="controls">
+            <div class="control__item">
+              <button onclick="return goToFrame(0);">Go to app ↑</button>
+            </div>
+            <div class="control__item">
+              <button onclick="return resetScore(event);">Reset</button>
+            </div>
+          </div>
+          <div class="logs-container">
+              <p>Logs :</p>
+          </div>
+        </div>
       </div>
-      <button
-        class="action-button"
-        id="minus"
-        onclick="return handleClick(event);"
-      >
-        -
-      </button>
-      <button
-        class="action-button"
-        id="plus"
-        onclick="return handleClick(event);"
-      >
-        +
-      </button>
     </div>
-    <div class="controls">
-      <div class="checkbox">
-        <input type="checkbox" id="sound" checked />
-        <label title="If checked, sound is enabled" for="sound"
-          >Enable sound</label
-        >
-      </div>
-    </div>
-    <div class="logs-container"></div>
 
     <script src="script.js"></script>
   </body>

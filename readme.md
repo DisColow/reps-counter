@@ -10,11 +10,11 @@ The buttons take up the whole width and height of your smartphone for clicking b
 
 There is a sound effect that plays each time you press a button in order to make sure you pressed the (correct) button
 
-Below the buttons, you can see logs and know the delta between each button press
+Click "Show metrics" to display the delta between each button press
 
 Press the center button to reset the app (counter to 0 and flush the logs)
 
-Scroll down to access the settings and toggle sound effects
+Add the progressive web app to your homepage on iOS !
 
 # Preview
 
@@ -22,13 +22,27 @@ Scroll down to access the settings and toggle sound effects
 
 # Screenshot
 
-![Screenshot](docs/screenshot.png)
+Default view (homepage) :
+![Default view](docs/defaultview.png)
+
+This is the view when you open the app
+
 The buttons area take up the whole screen
 
-If you scroll, you can see the press timestamps and delta
+Score is showing in the middle of the screen
+
+You can invert the buttons position to press buttons more easily :
+
+![Inverted buttons](docs/inverted.png)
+
+Controls are in the top right corner
+
+You can press "Show metrics" to access statistics
+
+![Inverted buttons](docs/logs.png)
 
 # Possible improvements :
 
 - Use computer keyboard arrow keys to increase/decrease score
-- Control to invert buttons position
+- Change buttons color
 - Control to change layout (up-down instead of left-right)
