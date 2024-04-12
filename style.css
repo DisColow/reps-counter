@@ -43,7 +43,6 @@ div.frame{
 .btn-container button#plus {
     /* background: green; */
     background: #66ffa4;
-    text-indent: calc(146px / 2);
     color: white;
 }
 /*
@@ -55,7 +54,6 @@ div.frame{
 */
 
 .btn-container button#minus {
-    text-indent: calc(-146px / 2);
     background: #ff6766;
     color: white;
 }
