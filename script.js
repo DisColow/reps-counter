@@ -41,6 +41,16 @@ function handleClick(e) {
         return false;
     }
 }
+document.addEventListener("touchstart", function(e){
+    if(!is_touch_screen())
+        return false;
+    handleClick(e);
+});
+document.addEventListener("mousedown", function(e){
+    if(is_touch_screen())
+        return false;
+    handleClick(e);
+});
 function addPoint(button_elm) {
     play_audio("up");
     counter_value++;

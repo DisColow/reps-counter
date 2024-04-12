@@ -36,15 +36,36 @@ div.frame{
     width: 50%;
     color: white;
     font-size: 72px;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
 }
 
 .btn-container button#plus {
-    background: green;
+    /* background: green; */
+    background: #66ffa4;
+    text-indent: calc(146px / 2);
+    color: white;
 }
+/*
+.btn-container button#plus:focus,
+.btn-container button#plus:active,
+.btn-container button#plus:hover{
+    background: #00ff66;
+}
+*/
 
 .btn-container button#minus {
-    background: red;
+    text-indent: calc(-146px / 2);
+    background: #ff6766;
+    color: white;
 }
+/*
+.btn-container button#minus:focus,
+.btn-container button#minus:active,
+.btn-container button#minus:hover{
+    background: rgb(255, 29, 29);
+}
+*/
 
 .btn-container .score {
     z-index: 10;
@@ -53,7 +74,7 @@ div.frame{
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     background: black;
-    color: yellow;
+    color: #ffeb66;
     font-weight: bold;
     padding: 6px 12px;
     font-family: 'Courier New', Courier, monospace;
