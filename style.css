@@ -86,6 +86,7 @@ div.frame{
 
 .controls{
     position: absolute;
+    flex-wrap: wrap;
     top: 0;
     right: 0;
     padding: 8px;
