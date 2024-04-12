@@ -94,7 +94,7 @@ div.frame{
     color: white;
     display: flex;
     gap: 10px;
-    align-items: flex-start;
+    align-items: baseline;
 }
 
 .checkbox{
