@@ -1,3 +1,9 @@
+:root{
+    --button-box-shadow-color: black;
+    --button-text-shadow-color: black;
+    --button-border-radius: 5px;
+}
+
 html {
     height: 100%;
     overflow: hidden;
@@ -27,10 +33,13 @@ div.frame{
 .btn-container {
     position: relative;
     height: 100vh;
-    width: 100%;
+    width: calc(100% - 2px);
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     align-items: stretch;
 }
+
 
 .btn-container .action-button {
     width: 50%;
@@ -38,32 +47,45 @@ div.frame{
     font-size: 72px;
     font-family: 'Courier New', Courier, monospace;
     border: none;
+    position: relative;
+    top: 1px;
+    height: calc(100% - 10px);
+    box-shadow:
+        0 1px 0 var(--button-box-shadow-color),
+        0 2px 0 var(--button-box-shadow-color),
+        0 3px 0 var(--button-box-shadow-color),
+        0 4px 0 var(--button-box-shadow-color),
+        0 5px 0 var(--button-box-shadow-color),
+        0 6px 0 var(--button-box-shadow-color),
+        0 7px 0 var(--button-box-shadow-color),
+        0 8px 0 var(--button-box-shadow-color);
+    text-shadow: 1px 1px var(--button-text-shadow-color), 1px 2px var(--button-text-shadow-color), 2px 1px var(--button-text-shadow-color);
+    transition: all 100ms ease;
+}
+
+.btn-container .action-button:focus,
+.btn-container .action-button:active,
+.btn-container .action-button:hover{
+    top: 9px;
+    box-shadow: none;
 }
 
 .btn-container button#plus {
-    /* background: green; */
     background: #66ffa4;
     color: white;
+    --button-box-shadow-color: green;
+    --button-text-shadow-color: green;
+    border-radius: 0 var(--button-border-radius) var(--button-border-radius) 0;
 }
-/*
-.btn-container button#plus:focus,
-.btn-container button#plus:active,
-.btn-container button#plus:hover{
-    background: #00ff66;
-}
-*/
+
 
 .btn-container button#minus {
     background: #ff6766;
     color: white;
+    --button-box-shadow-color: #b64848;
+    --button-text-shadow-color: #b64848;
+    border-radius: var(--button-border-radius) 0 0 var(--button-border-radius);
 }
-/*
-.btn-container button#minus:focus,
-.btn-container button#minus:active,
-.btn-container button#minus:hover{
-    background: rgb(255, 29, 29);
-}
-*/
 
 .btn-container .score {
     z-index: 10;
