@@ -93,8 +93,10 @@ div.frame{
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background: black;
-    color: #ffeb66;
+    background: yellow;
+    color: red;
+    border-radius: 5px;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
     font-weight: bold;
     padding: 6px 12px;
     font-family: 'Courier New', Courier, monospace;
@@ -115,14 +117,15 @@ div.frame{
 .logs-container .log-item {
     margin-top: 5px;
     padding: 2px;
+    color: white;
 }
 
 .logs-container .log-item.remove {
-    background: rgba(255, 0, 0, 0.5);
+    background: #b64848;
 }
 
 .logs-container .log-item.add {
-    background: rgba(0, 255, 0, 0.5);
+    background: green;
 }
 
 .score__subtitle{
@@ -137,15 +140,16 @@ div.frame{
 
 .controls{
     position: absolute;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     top: 0;
-    right: 0;
+    left: 50%;
+    transform: translate(-50%);
     padding: 8px;
-    background: black;
+    /* background: #ffe291; */
     color: white;
     display: flex;
     gap: 10px;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .checkbox{
@@ -162,5 +166,68 @@ div.frame{
 }
 
 label, input[type=checkbox]{
+    cursor: pointer;
+}
+.state-icon-checkbox{
+    display: none;
+}
+.state-icon-checkbox:checked + label .active{
+    display: inline-block;
+}
+.state-icon-checkbox:not(:checked) + label .inactive{
+    display: inline-block;
+}
+.button-1,
+.state-icon-checkbox + label{
+    display: inline-block; /* overriden by checkbox state */
+    box-sizing: content-box;
+    background: transparent;
+    font-size: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ffe291;
+    border: 1px solid #2c3e50;
+    box-shadow: 
+        0 1px 0 #2c3e50,
+        0 2px 0 #2c3e50;
+}
+.button-1 img{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+.state-icon-checkbox + label img{
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+.button-with-indicator{
+    position: relative;
+}
+.button-with-indicator:before{
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.button-with-indicator.up-indicator:before{
+    bottom: 100%;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid black;
+}
+.button-with-indicator.down-indicator:before{
+    top: 100%;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid black;
+}
+
+button{
     cursor: pointer;
 }
