@@ -162,7 +162,10 @@ div.frame{
 }
 
 .logs-container{
-    max-height: 100vh;
+    height: calc(100vh - 60px);
+    position: relative;
+    top: 60px;
+    background: white;
     overflow: auto;
 }
 
