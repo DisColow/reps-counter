@@ -12,6 +12,7 @@ html {
 body {
     height: 100%;
     overflow: auto;
+    background-color: #ffe291;
 }
 
 div.app-container {
