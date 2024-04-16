@@ -39,7 +39,11 @@ Controls are in the top right corner
 
 You can press "Show metrics" to access statistics
 
-![Inverted buttons](docs/logs.png)
+![Logs](docs/logs.png)
+
+# Moving images
+
+![moving](docs/slide.gif)
 
 # Possible improvements :
 
