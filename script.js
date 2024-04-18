@@ -12,6 +12,10 @@ var button_down;
 var buttons_container;
 var invert_state = 0;
 var slider_container;
+var start_timestamp = null;
+var total_duration = 0;
+var is_stopwatch_started = false;
+var stopwatch_container;
 function is_touch_screen() {
     // https://codepen.io/tteske/pen/KKwxOxp
     is_touch = false;
@@ -73,13 +77,18 @@ function get_score_elm() {
     }
 }
 function logTimestamp(type) {
+    is_stopwatch_started = true;
+    if(!start_timestamp)
+        start_timestamp = new Date();
     new_timestamp = new Date();
+    total_duration = new_timestamp - start_timestamp;
     if (!previous_action_timestamp)
         previous_action_timestamp = new_timestamp;
     var log_element = {
         "action": type,
         "timestamp": new_timestamp,
-        "count": counter_value
+        "count": counter_value,
+        "total_duration": total_duration
     }
     logs.push(log_element);
     display_logs(log_element);
@@ -91,10 +100,11 @@ function display_logs(log_element) {
     div.classList.add(log_element.action);
     div.classList.add("log-item");
     var the_time = getTime(log_element.timestamp);
+    var the_duration = getDurationToString(log_element.total_duration);
     if (previous_action_timestamp == new_timestamp) {
-        div.textContent = counter_value + " => " + the_time;
+        div.textContent = counter_value + " => Start timestamp : " + the_time;
     } else {
-        div.textContent = counter_value + " => " + getTimeOffset(previous_action_timestamp, log_element.timestamp) + " (" + the_time + ")";
+        div.textContent = counter_value + " => " + getTimeOffset(previous_action_timestamp, log_element.timestamp) + " | Duration : " + the_duration;
     }
     logs_container.append(div);
 }
@@ -125,33 +135,87 @@ function getTime(the_date) {
     var minutes = the_date.getMinutes();
     var seconds = the_date.getSeconds();
     var ms = the_date.getMilliseconds();
-    hours = add_leading_zero(hours);
-    minutes = add_leading_zero(minutes);
-    seconds = add_leading_zero(seconds);
+    hours = hours.toLocaleString('en-US', {
+        minimumIntegerDigits: 2
+    })
+    minutes = minutes.toLocaleString('en-US', {
+        minimumIntegerDigits: 2
+    });
+    seconds = seconds.toLocaleString('en-US', {
+        minimumIntegerDigits: 2
+    })
+    seconds.toLocaleString('en-US', {
+        minimumSignificantDigits: 3
+    });
     return hours + "h" + minutes + "m" + seconds + "s." + ms + "ms";
 }
-function add_leading_zero(number) {
-    if (!number) {
-        number = "00";
-    } else if (number < 10) {
-        number = "0" + number;
-    }
-    return number;
+function getTime2(hours, minutes, seconds){
+    hours = hours.toLocaleString('en-US', {
+        minimumIntegerDigits: 2
+    })
+    minutes = minutes.toLocaleString('en-US', {
+        minimumIntegerDigits: 2
+    });
+    seconds = seconds.toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        minimumFractionDigits: 3
+    });
+    return hours + ":" + minutes + ":" + seconds
+}
+
+function getDurationToString(duration_ms){
+    var seconds = duration_ms / 1000;
+    var minutes = seconds / 60;
+    if(minutes < 1)
+        minutes = 0;
+    else
+        minutes = Math.ceil(minutes);
+    var hours = minutes / 60;
+    if(hours < 1)
+        hours = 0;
+    else
+        hours = Math.ceil(hours);
+
+    var string = getTime2(hours, minutes, seconds);
+    return string;
 }
 
 function resetScore(){
-    var choice = confirm("Erase all data and reset score to 0 ?");
+    var choice = confirm("This will :\n- Erase all data\n- Reset score to 0\n- Reset stopwatch to 0\nProceed?");
     if(!choice){
         return false;
     } else {
+        is_stopwatch_started = false;
         previous_action_timestamp = null;
+        start_timestamp = null;
         counter_value = 0;
         setScore();
         getLogsContainer();
         logs = new Array();
-        logs_container.innerHTML = "<p>Logs :</p>";
+        logs_container.innerHTML = "";
+        setStopwatchTime("00:00:00.000");
     }
 }
+
+function getStopwatchContainer(){
+    if(!stopwatch_container)
+        stopwatch_container = document.querySelector('.stopwatch');
+}
+function setStopwatchTime(duration_string){
+    getStopwatchContainer();
+    duration_string = duration_string.substring(0, 12);
+    stopwatch_container.setAttribute("data-value", duration_string);
+}
+setInterval(function(){
+    if(!is_stopwatch_started)
+        return;
+
+    var t_now = new Date();
+    var t_total_duration = t_now - start_timestamp;
+    var t_duration_to_string = getDurationToString(t_total_duration);
+
+    setStopwatchTime(t_duration_to_string);
+}, 100)
 
 function getSoundCheckbox() {
     if (!sound_checkbox)
