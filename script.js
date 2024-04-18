@@ -186,7 +186,7 @@ function getDurationToString(duration_ms){
 }
 
 function resetScore(){
-    var choice = confirm("This will :\n- Erase all data\n- Reset score to 0\n- Reset stopwatch to 0\nProceed?");
+    var choice = confirm("This will :\n- Erase all data\n- Reset score to 0\nProceed?");
     if(!choice){
         return false;
     } else {
