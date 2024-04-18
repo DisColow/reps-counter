@@ -59,13 +59,26 @@
               </label>
             </div>
             <div class="control__item">
+              <button onclick="return toggleStopwatch(this, event);" class="button-1 inactive">
+                <img src="assets/toggle-stopwatch.png">
+              </button>
+            </div>
+            <div class="control__item">
               <button onclick="return goToFrame(1);" class="button-1 button-with-indicator down-indicator"><img src="assets/go-to-stats.png"></button>
             </div>
             <div class="control__item">
               <button onclick="return resetScore(event);" class="button-1"><img src="assets/reset.png"></button>
             </div>
           </div>
-          <div class="stopwatch" data-value="00:00:00.000">
+          <div class="stopwatch-container hidden">
+            <button class="stopwatch-action" onclick="pauseStopwatch(this, event)">
+              <img src="assets/play-pause.png">
+            </button>
+            <div class="stopwatch" data-value="00:00:00.000" onclick="pauseStopwatch(this, event)" class="hidden">
+            </div>
+            <button class="stopwatch-action" onclick="resetStopwatch(this, event);">
+              <img src="assets/stop.png">
+            </button>
           </div>
         </div>
         <div class="frame">

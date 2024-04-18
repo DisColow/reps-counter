@@ -14,8 +14,12 @@ var invert_state = 0;
 var slider_container;
 var start_timestamp = null;
 var total_duration = 0;
-var is_stopwatch_started = false;
+/* Stopwatch */
+var visual_stopwatch_container;
 var stopwatch_container;
+var is_stopwatch_paused = true;
+var stopwatch_start_timestamp;
+var pause_timestamp;
 function is_touch_screen() {
     // https://codepen.io/tteske/pen/KKwxOxp
     is_touch = false;
@@ -77,9 +81,9 @@ function get_score_elm() {
     }
 }
 function logTimestamp(type) {
-    is_stopwatch_started = true;
-    if(!start_timestamp)
+    if(!start_timestamp){
         start_timestamp = new Date();
+    }
     new_timestamp = new Date();
     total_duration = new_timestamp - start_timestamp;
     if (!previous_action_timestamp)
@@ -88,7 +92,8 @@ function logTimestamp(type) {
         "action": type,
         "timestamp": new_timestamp,
         "count": counter_value,
-        "total_duration": total_duration
+        "total_duration": total_duration,
+        "delta": getTimeOffset(previous_action_timestamp, new_timestamp)
     }
     logs.push(log_element);
     display_logs(log_element);
@@ -104,7 +109,7 @@ function display_logs(log_element) {
     if (previous_action_timestamp == new_timestamp) {
         div.textContent = counter_value + " => Start timestamp : " + the_time;
     } else {
-        div.textContent = counter_value + " => " + getTimeOffset(previous_action_timestamp, log_element.timestamp) + " | Duration : " + the_duration;
+        div.textContent = counter_value + " => " + log_element.delta + " | Duration : " + the_duration;
     }
     logs_container.append(div);
 }
@@ -185,7 +190,6 @@ function resetScore(){
     if(!choice){
         return false;
     } else {
-        is_stopwatch_started = false;
         previous_action_timestamp = null;
         start_timestamp = null;
         counter_value = 0;
@@ -193,11 +197,39 @@ function resetScore(){
         getLogsContainer();
         logs = new Array();
         logs_container.innerHTML = "";
-        setStopwatchTime("00:00:00.000");
     }
 }
 
+function toggleStopwatch(element, event){
+    getStopwatchContainer();
+    element.classList.toggle('inactive')
+    visual_stopwatch_container.classList.toggle('hidden');
+}
+
+function pauseStopwatch(element, event){
+    if(!stopwatch_start_timestamp)
+        pause_timestamp = stopwatch_start_timestamp = new Date();
+    if(!is_stopwatch_paused){
+        // Request to pause the timestamp
+        pause_timestamp = new Date();
+    }else{
+        // Request to unpause the timestamp
+        pause_duration = new Date() - pause_timestamp;
+        stopwatch_start_timestamp = new Date(stopwatch_start_timestamp.getTime() + pause_duration);
+    }
+    is_stopwatch_paused = !is_stopwatch_paused;
+}
+function resetStopwatch(element, event){
+    if(!confirm('Reset stopwatch to 0?'))
+        return false;
+
+    pause_timestamp = stopwatch_start_timestamp = null;
+    is_stopwatch_paused = true;
+    setStopwatchTime(getDurationToString(0));
+}
 function getStopwatchContainer(){
+    if(!visual_stopwatch_container)
+        visual_stopwatch_container = document.querySelector('.stopwatch-container');
     if(!stopwatch_container)
         stopwatch_container = document.querySelector('.stopwatch');
 }
@@ -207,11 +239,11 @@ function setStopwatchTime(duration_string){
     stopwatch_container.setAttribute("data-value", duration_string);
 }
 setInterval(function(){
-    if(!is_stopwatch_started)
+    if(is_stopwatch_paused)
         return;
 
     var t_now = new Date();
-    var t_total_duration = t_now - start_timestamp;
+    var t_total_duration = t_now - stopwatch_start_timestamp;
     var t_duration_to_string = getDurationToString(t_total_duration);
 
     setStopwatchTime(t_duration_to_string);
