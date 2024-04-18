@@ -292,3 +292,7 @@ button{
 .stopwatch:after{
     content: attr(data-value);
 }
+
+.clickable{
+    cursor: pointer;
+}
