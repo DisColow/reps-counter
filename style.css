@@ -41,6 +41,24 @@ div.frame{
     align-items: stretch;
 }
 
+.btn-container.solo button#plus{
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn-container.solo button#minus{
+    display: none;
+}
+
+.btn-container.solo .score{
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 9px;
+    transform: translateY(0) translateX(0);
+}
 
 .btn-container .action-button {
     width: 50%;
@@ -89,6 +107,7 @@ div.frame{
 }
 
 .btn-container .score {
+    margin-top: 0;
     z-index: 10;
     position: absolute;
     left: 50%;
@@ -96,14 +115,17 @@ div.frame{
     transform: translateX(-50%) translateY(-50%);
     background: yellow;
     color: red;
-    border-radius: 5px;
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    border: 2px solid red;
+    border-right: 4px solid red;
+    border-left: 4px solid red;
+    border-radius: 10px;
     font-weight: bold;
     padding: 6px 12px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     cursor: pointer;
     user-select: none;
+    transition: all 250ms ease;
 }
 
 .btn-container .score:before {
@@ -295,4 +317,28 @@ button{
 
 .clickable{
     cursor: pointer;
+}
+
+.toggle-minus-button-icon{
+    position: relative;
+    --minus-button-icon-dimensions: 20px;
+    margin: auto;
+    display: block;
+    background: #ff6766;
+    color: white;
+    text-shadow: 0 1px black;
+    width: var(--minus-button-icon-dimensions);
+    height: var(--minus-button-icon-dimensions);
+    font-size: 18px;
+    line-height: var(--minus-button-icon-dimensions);
+    border-radius: 5px;
+    vertical-align: middle;
+    font-family: 'Courier New', Courier, monospace;
+}
+.toggle-minus-button-icon:before{
+    content: "-";
+}
+
+.js-multi-state.inactive > *{
+    opacity: 0.6;
 }
